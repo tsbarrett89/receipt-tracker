@@ -3,19 +3,25 @@ import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({ values, touched, errors, handleSubmit }, props) => {
     return (
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Field
                 type='text'
                 name='username'
                 placeholder='username'
             />
+            {touched.username && errors.username && (
+                <p className="error">{errors.username}</p>
+            )}
             <Field
                 type='password'
                 name='password'
                 placeholder='password'
             />
+            {touched.username && errors.username && (
+                <p className="error">{errors.username}</p>
+            )}
             <button>Log In</button>
         </Form>
     )
@@ -37,7 +43,7 @@ const FormikLogin = withFormik({
             .min(4, "Pleae make your password at least 4 characters long.")
             .required("Need a password so we know that you know that we know who you are.")
     }),
-    handleSubmit (values){
+    handleSubmit (values, {props}){
         axios
             .post('http://project-receipt-tracker.herokuapp.com/login', `grant_type=password&username=${values.username}&password=${values.password}`, {
                 headers: {
@@ -53,3 +59,5 @@ const FormikLogin = withFormik({
             .catch(err => console.log(err));
     }
 })(Login)
+
+export default FormikLogin

@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom'
 
 import Navigation from './components/Navigation'
+import FormikLogin from './components/Login'
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <Navigation />
 
       <Route exact path='/' />
-      <Route path='/login' />
+      <Route path='/login' component={FormikLogin} />
       <Route path='/register' />
       <Route path='/saved-receipts' />
       <Route path='/create-receipt' />
