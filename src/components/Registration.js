@@ -3,7 +3,9 @@ import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
-const Registration = ({ touced, errors }) => {
+const Registration = ({ values, touched, errors, handleSubmit }) => {
+    console.log(values)
+    
     return (
         <Form onSubmit={handleSubmit}>
             <Field
@@ -30,6 +32,7 @@ const Registration = ({ touced, errors }) => {
             {touched.password && errors.password && (
                 <p className="error">{errors.password}</p>
             )}
+            <button type='submit'>Register Account</button>
         </Form>
     )
 }
@@ -57,11 +60,11 @@ const FormikRegistration = withFormik({
             .post('http://project-receipt-tracker.herokuapp.com/createnewuser', values)
             .then(res => {
                 console.log(res);
-                localStorage.setItem('token', res.data.payload);
+                localStorage.setItem('token', res.data.access_token);
                 props.history.push('/login')
             })
             .catch(err => console.log(err));
     }
 })(Registration)
 
-default export FormikRegistration
+export default FormikRegistration
