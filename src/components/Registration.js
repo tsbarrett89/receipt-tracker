@@ -51,5 +51,17 @@ const FormikRegistration = withFormik({
         password: Yup.string()
             .min(4, "At least 4 characters long")
             .required("You're going to need one the get your receipts!")
-    })
+    }),
+    handleSubmit (values, {props}){
+        axios
+            .post('http://project-receipt-tracker.herokuapp.com/createnewuser', values)
+            .then(res => {
+                console.log(res);
+                localStorage.setItem('token', res.data.payload);
+                props.history.push('/login')
+            })
+            .catch(err => console.log(err));
+    }
 })(Registration)
+
+default export FormikRegistration
