@@ -3,7 +3,7 @@ import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
-const Login = ({ values, touched, errors, handleSubmit }, props) => {
+const Login = ({ touched, errors, handleSubmit }) => {
     return (
         <Form onSubmit={handleSubmit}>
             <Field
@@ -37,7 +37,7 @@ const FormikLogin = withFormik({
 
     validationSchema: Yup.object().shape({
         username: Yup.string()
-            .min(3, "Username needs to be at least 3 characters long.")
+            .min(4, "Username needs to be at least 3 characters long.")
             .required("We need to know whose receipts to look up."),
         password: Yup.string()
             .min(4, "Pleae make your password at least 4 characters long.")
