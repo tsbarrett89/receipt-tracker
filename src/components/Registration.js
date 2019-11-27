@@ -10,11 +10,11 @@ const Registration = ({ values, touched, errors, handleSubmit }) => {
         <Form onSubmit={handleSubmit}>
             <Field
                 type='text'
-                name='email'
+                name='primaryemail'
                 placeholder='email'
             />
-            {touched.email && errors.email && (
-                <p className="error">{errors.email}</p>
+            {touched.primaryemail && errors.primaryemail && (
+                <p className="error">{errors.primaryemail}</p>
             )}
             <Field 
                 type='text'
@@ -38,9 +38,9 @@ const Registration = ({ values, touched, errors, handleSubmit }) => {
 }
 
 const FormikRegistration = withFormik({
-    mapPropsToValues({email, username, password}){
+    mapPropsToValues({primaryemail, username, password}){
         return {
-            email: email || '',
+            primaryemail: primaryemail || '',
             username: username || '',
             password: password || ''
         }
