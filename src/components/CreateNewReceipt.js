@@ -46,6 +46,7 @@ const CreateNewReceipt = ({ values, touched, errors, handleSubmit }) => {
                 <p className="error">{errors.amount}</p>
             )}
             <Field as='select' name='category'>
+                <option value=''>Choose One</option>
                 <option value='Home'>Home</option>
                 <option value='Office'>Office</option>
                 <option value='Car'>Car</option>
@@ -63,6 +64,7 @@ const CreateNewReceipt = ({ values, touched, errors, handleSubmit }) => {
                 type='text'
                 name='imageurl'
                 placeholder='imageurl'
+                value={values.imageurl}
             />
             <Field
                 type="file"
@@ -80,10 +82,10 @@ const CreateNewReceipt = ({ values, touched, errors, handleSubmit }) => {
 const FormikCreateNewUser = withFormik({
     mapPropsToValues({merchantname, date, amount, category, imageurl}){
         return {
-            merchantname: merchantname || '',
             date: date || '',
             amount: amount || '',
             category: category || '',
+            merchantname: merchantname || '',
             imageurl: imageurl || ''
         }
     },
