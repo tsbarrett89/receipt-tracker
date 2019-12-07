@@ -3,13 +3,14 @@ import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
-const Login = ({ touched, errors, handleSubmit }) => {
+const Login = ({ username, password, touched, errors, handleSubmit }) => {
     return (
         <Form onSubmit={handleSubmit}>
             <Field
                 type='text'
                 name='username'
                 placeholder='username'
+                value={username}
             />
             {touched.username && errors.username && (
                 <p className="error">{errors.username}</p>
@@ -18,11 +19,12 @@ const Login = ({ touched, errors, handleSubmit }) => {
                 type='password'
                 name='password'
                 placeholder='password'
+                value={password}
             />
             {touched.username && errors.username && (
                 <p className="error">{errors.username}</p>
             )}
-            <button>Log In</button>
+            <button type="submit">Log In</button>
         </Form>
     )
 }
@@ -54,7 +56,7 @@ const FormikLogin = withFormik({
             .then(res => {
                 console.log(res);
                 localStorage.setItem('token', res.data.access_token);
-                props.history.push('/receipts-list')
+                props.history.push('/saved-receipts')
             })
             .catch(err => console.log(err));
     }

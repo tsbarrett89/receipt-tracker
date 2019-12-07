@@ -12,7 +12,7 @@ function App() {
     <div>
       <Navigation />
 
-      <Route exact path='/' />
+      <Route exact path='/' component={FormikLogin} />
       <Route path='/login' component={FormikLogin} />
       <Route path='/register' component={FormikRegistration} />
       <Route path='/saved-receipts' component={SavedReceipts} />
