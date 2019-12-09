@@ -4,6 +4,19 @@ import { NavLink } from 'react-router-dom'
 
 export const HeaderStyled = styled.div `
     background-color: green;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    
+`
+
+export const HeaderDiv = styled.div `
+    display: flex;   
+
+    img {
+        width: 75px;
+    }
 `
 
 export const BodyStyled = styled.div `
@@ -23,12 +36,17 @@ export const NavLinkStyled = styled(NavLink) `
 `
 
 export const LoginForm = styled(Form) `
-    width: 60%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 2px solid black;
-    margin: 5% auto auto 10%;
+    margin: 5% auto auto 20%;
+    padding: 3%;
+`
+
+export const LoginField = styled(Field) `
+
 `
 
 export const ReceiptCard = styled.div `

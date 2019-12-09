@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Field, withFormik } from 'formik';
+import { Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
@@ -8,24 +8,26 @@ import { LoginForm } from './styling'
 const Login = ({ username, password, touched, errors, handleSubmit }) => {
     return (
         <LoginForm onSubmit={handleSubmit}>
-            <Field
-                type='text'
-                name='username'
-                placeholder='username'
-                value={username}
-            />
-            {touched.username && errors.username && (
+            <label>Username: 
+                <Field
+                    type='text'
+                    name='username'
+                    value={username}
+                />
+                {touched.username && errors.username && (
                 <p className="error">{errors.username}</p>
             )}
-            <Field
-                type='password'
-                name='password'
-                placeholder='password'
-                value={password}
-            />
-            {touched.username && errors.username && (
-                <p className="error">{errors.username}</p>
-            )}
+            </label>
+            <label>Password: 
+                <Field
+                    type='password'
+                    name='password'
+                    value={password}
+                />
+                {touched.password && errors.password && (
+                    <p className="error">{errors.password}</p>
+                )}
+            </label>
             <button type="submit">Log In</button>
         </LoginForm>
     )
