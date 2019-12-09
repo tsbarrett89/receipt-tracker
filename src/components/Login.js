@@ -3,9 +3,11 @@ import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
+import { LoginForm } from './styling'
+
 const Login = ({ username, password, touched, errors, handleSubmit }) => {
     return (
-        <Form onSubmit={handleSubmit}>
+        <LoginForm onSubmit={handleSubmit}>
             <Field
                 type='text'
                 name='username'
@@ -25,7 +27,7 @@ const Login = ({ username, password, touched, errors, handleSubmit }) => {
                 <p className="error">{errors.username}</p>
             )}
             <button type="submit">Log In</button>
-        </Form>
+        </LoginForm>
     )
 }
 

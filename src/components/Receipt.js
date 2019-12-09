@@ -3,6 +3,8 @@ import axios from 'axios'
 
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 
+import { ReceiptCard } from './styling'
+
 const Receipt = props => {
     const [editing, setEditing] = useState(false)
     const [receiptToEdit, setReceiptToEdit] = useState(props.receipt);
@@ -58,7 +60,7 @@ const Receipt = props => {
     }
 
     return (
-        <div>
+        <ReceiptCard>
             <p>Date of Purchase: {props.receipt.date}</p>
             <p>Amount: {props.receipt.amount}</p>
             <p>Category: {props.receipt.category}</p>
@@ -132,7 +134,7 @@ const Receipt = props => {
                 </form>
             )}
             
-        </div>
+        </ReceiptCard>
     )
 }
 

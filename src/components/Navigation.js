@@ -1,15 +1,17 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+import { NavStyled, NavLinkStyled } from './styling'
+
 const Navigation = () => {
     return (
-        <div>
-            <NavLink to="/login">Log In</NavLink>
-            <NavLink to="/register">Register</NavLink>
-            <NavLink to="/saved-receipts">Saved Receipts</NavLink>
-            <NavLink to="/create-receipt">Create New Receipt</NavLink>
-            <NavLink to="/login">Log Out</NavLink>
-        </div>
+        <NavStyled>
+            {/* <NavLink to="/login">Log In</NavLink> */}
+            <NavLinkStyled to="/register">Register</NavLinkStyled>
+            <NavLinkStyled to="/saved-receipts">Saved Receipts</NavLinkStyled>
+            <NavLinkStyled to="/create-receipt">Create New Receipt</NavLinkStyled>
+            {/* <NavLink to="/login">Log Out</NavLink> */}
+        </NavStyled>
     )
 }
 
