@@ -1,7 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-import { HeaderStyled, HeaderDiv } from './styling'
+import { HeaderStyled, HeaderDiv, LoginStyled } from './styling'
 
 import logo from '../images/logo.png'
 
@@ -13,7 +12,7 @@ const Header = () => {
                 <img src={logo} alt="receipt logo" />
                 <h1>Receipt Tracker</h1>
             </HeaderDiv>
-            <Link to={'/login'}>Log In</Link>
+            <LoginStyled to={'/login'}>Log In</LoginStyled>
         </HeaderStyled>
     )
 }

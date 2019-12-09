@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
+import { CredentialContext } from '../contexts/CredentialsContext'
+
 import { LoginForm } from './styling'
 
 const Login = ({ username, password, touched, errors, handleSubmit }) => {
+    
+
+
     return (
         <LoginForm onSubmit={handleSubmit}>
             <label>Username: 
@@ -60,7 +65,7 @@ const FormikLogin = withFormik({
             .then(res => {
                 console.log(res);
                 localStorage.setItem('token', res.data.access_token);
-                props.history.push('/saved-receipts')
+                props.history.push('/saved-receipts');
             })
             .catch(err => console.log(err));
     }

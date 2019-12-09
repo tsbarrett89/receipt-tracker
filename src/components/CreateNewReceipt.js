@@ -99,12 +99,13 @@ const FormikCreateNewUser = withFormik({
             category: Yup.string()
                 .required("We need this, you can always change it later")
     }),
-    handleSubmit (values){
+    handleSubmit (values, {resetForm}){
         const token = localStorage.getItem('token')
         axios
             .post(`http://project-receipt-tracker.herokuapp.com/receipts/receipt?access_token=${token}`, values)
             .then(res => {
                 console.log(res);
+                resetForm({})
             })
             .catch(err => console.log(err))
     }
