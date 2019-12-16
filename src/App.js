@@ -5,28 +5,35 @@ import { CredentialContext } from './contexts/CredentialsContext'
 
 import Header from './components/Header'
 import Navigation from './components/Navigation'
-import FormikLogin from './components/Login'
+import Login from './components/Login'
 import FormikRegistration from './components/Registration'
+import Dashboard from './components/Dashboard'
 import FormikCreateNewReceipt from './components/CreateNewReceipt'
 import SavedReceipts from './components/SavedReceipts'
+import PrivateRoute from './utils/PrivateRoute'
 
 import { BodyStyled } from './components/styling'
 
 function App() {
-  const [currentUsername, setcurrentUsername] = useState('')
+  const [currentUsername, setCurrentUsername] = useState('')
+
+  const changeUsername = (username) => {
+    setCurrentUsername(username)
+  }
 
   return (
     <div>
-      <CredentialContext.Provider value={{ currentUsername, setcurrentUsername }}>
+      <CredentialContext.Provider value={{ currentUsername, changeUsername }}>
         <Header />
         <BodyStyled>
           <Navigation />
 
-          <Route exact path='/' component={FormikLogin} />
-          <Route path='/login' component={FormikLogin} />
+          <Route exact path='/' component={Login} />
+          <Route path='/login' component={Login} />
           <Route path='/register' component={FormikRegistration} />
-          <Route path='/saved-receipts' component={SavedReceipts} />
-          <Route path='/create-receipt' component={FormikCreateNewReceipt} />
+          <PrivateRoute path='/user-dashboard' component={Dashboard} />
+          <PrivateRoute path='/saved-receipts' component={SavedReceipts} />
+          <PrivateRoute path='/create-receipt' component={FormikCreateNewReceipt} />
         </BodyStyled>
       </CredentialContext.Provider>
     </div>

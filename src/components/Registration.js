@@ -1,14 +1,18 @@
 import React from 'react';
-import { Form, Field, withFormik } from 'formik';
+import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+
+import { RegistrationForm, RegistrationField } from './styling'
 
 const Registration = ({ values, touched, errors, handleSubmit }) => {
     console.log(values)
     
     return (
-        <Form onSubmit={handleSubmit}>
-            <Field
+        <RegistrationForm onSubmit={handleSubmit}>
+            <h3>Register for a Receipt Tracker account.</h3>
+            <h4>What is your email?</h4> 
+            <RegistrationField
                 type='text'
                 name='primaryemail'
                 placeholder='email'
@@ -16,7 +20,8 @@ const Registration = ({ values, touched, errors, handleSubmit }) => {
             {touched.primaryemail && errors.primaryemail && (
                 <p className="error">{errors.primaryemail}</p>
             )}
-            <Field 
+            <h4>Choose a username</h4>
+            <RegistrationField 
                 type='text'
                 name='username'
                 placeholder='username'
@@ -24,7 +29,8 @@ const Registration = ({ values, touched, errors, handleSubmit }) => {
             {touched.username && errors.username && (
                 <p className="error">{errors.username}</p>
             )}
-            <Field
+            <h4>Now come up with a good password.</h4>
+            <RegistrationField
                 type='password'
                 name='password'
                 placeholder='password'
@@ -32,8 +38,9 @@ const Registration = ({ values, touched, errors, handleSubmit }) => {
             {touched.password && errors.password && (
                 <p className="error">{errors.password}</p>
             )}
+            <h4>And register!</h4>
             <button type='submit'>Register Account</button>
-        </Form>
+        </RegistrationForm>
     )
 }
 

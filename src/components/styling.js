@@ -7,8 +7,6 @@ export const HeaderStyled = styled.div `
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-
-    
 `
 
 export const HeaderDiv = styled.div `
@@ -29,13 +27,14 @@ export const LoginStyled = styled(Link) `
 
 export const BodyStyled = styled.div `
     display: flex;
+    background-color: #6784FF;
 `
 
 export const NavStyled = styled.nav `
     display: flex;
     flex-direction: column;
     background-color: #2D6187;
-    width: 20%;
+    width: 25%;
 `
 
 export const NavLinkStyled = styled(NavLink) `
@@ -45,25 +44,75 @@ export const NavLinkStyled = styled(NavLink) `
     margin: 15px 0 0 20px;
 `
 
+export const ContentStyled = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+`
+
 export const LoginForm = styled(Form) `
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1% auto 0;
+    padding: 1%;
+`
+
+export const LoginField = styled(Field) `
+    width: 50%;
+    margin: 4% auto 0 3%;
+`
+
+export const LoginButton = styled.button `
+    width: 20%;
+    margin-top: 3.5%;
+`
+
+export const RegistrationForm = styled(Form) `
     width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid black;
-    margin: 5% auto auto 20%;
-    padding: 3%;
+    margin: 1% auto auto 20%;
+    padding: 1%;
 `
 
-export const LoginField = styled(Field) `
-
+export const RegistrationField = styled(Field) `
+    width: 40%;
 `
 
 export const ReceiptCard = styled.div `
-    width: 40%;
-    background-color: blue;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    img {
-        width: 80%;
+    .hide {
+        display: none;
     }
+`
+
+export const ReceiptSpan = styled.span `
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+`
+
+export const NewReceiptForm = styled(Form) `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+`
+
+export const NewReceiptSpan = styled.span `
+    display: flex;
+    justify-content: space-between;
+    width: 45%;
+`
+
+export const NewReceiptField = styled(Field) `
+    margin-bottom: 2%;
 `

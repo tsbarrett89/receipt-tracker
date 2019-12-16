@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 
-import { ReceiptCard } from './styling'
+import { ReceiptCard, ReceiptSpan } from './styling'
 
 const Receipt = props => {
     const [editing, setEditing] = useState(false)
     const [receiptToEdit, setReceiptToEdit] = useState(props.receipt);
-    const [image, setImage] = useState('')
+    const [image, setImage] = useState('');
+    const [receiptImage, setReceiptImage] = useState(false);
  
     const token = localStorage.getItem('token');
 
@@ -59,13 +60,29 @@ const Receipt = props => {
             .catch(err => console.log(err))
     }
 
+    const showReceipt = e => {
+        setReceiptImage(true)
+    }
+
+    useEffect(() => {
+        const image = document.getElementById("receiptImg");
+        if (receiptImage) {
+            image.classList.remove("hide");
+        } else {
+            image.classList.add("hide")
+        }
+    }, [receiptImage])
+
     return (
         <ReceiptCard>
-            <p>Date of Purchase: {props.receipt.date}</p>
-            <p>Amount: {props.receipt.amount}</p>
-            <p>Category: {props.receipt.category}</p>
-            <p>Merchant Name: {props.receipt.merchantname}</p>
-            <img className='receiptImage' src={props.receipt.imageurl} alt={props.receipt.merchantname} />
+            <ReceiptSpan>
+                <p>{props.receipt.merchantname}</p>
+                <p>{props.receipt.date}</p>
+                <p>{props.receipt.amount}</p>
+                <p>{props.receipt.category}</p>
+            </ReceiptSpan>
+            <img className="hide" id="receiptImg" src={props.receipt.imageurl} alt={props.receipt.merchantname} />
+            <button onClick={showReceipt}>Show Receipt</button>
             <button onClick={deleteReceipt}>Delete Receipt</button>
             <button onClick={() => editReceipt(props.receipt)}>Edit Receipt</button>
             {editing &&(

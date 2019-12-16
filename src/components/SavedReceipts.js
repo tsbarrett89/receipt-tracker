@@ -3,6 +3,8 @@ import axios from 'axios'
 
 import Receipt from './Receipt'
 
+import { ContentStyled } from './styling'
+
 const SavedReceipts = () => {
     const [receipts, setReceipts] = useState([]);
     const [update, setUpdate] = useState('');
@@ -19,7 +21,8 @@ const SavedReceipts = () => {
     }, [update]);
 
     return (
-        <div>
+        <ContentStyled>
+            {receipts.length < 1 && <h3>Enter a receipt to view it here</h3>}
             {receipts.map(receipt => (
                 <Receipt
                     key={receipt.receiptid}
@@ -28,7 +31,7 @@ const SavedReceipts = () => {
                     setUpdate={setUpdate}
                 />
             ))}
-        </div>
+        </ContentStyled>
     )
 }
 

@@ -1,7 +1,9 @@
 import React from 'react';
-import { Form, Field, withFormik } from 'formik'
+import { withFormik } from 'formik'
 import * as Yup from 'yup';
 import axios from 'axios';
+
+import { NewReceiptForm, NewReceiptField, ContentStyled, NewReceiptSpan } from './styling'
 
 const CreateNewReceipt = ({ values, touched, errors, handleSubmit }) => {
 
@@ -20,62 +22,79 @@ const CreateNewReceipt = ({ values, touched, errors, handleSubmit }) => {
             .catch(err => console.log(err))
     }
 
+    const handleCategoryChange = e => {
+        values.category = e.target.value
+        
+    }
+
     return (
-        <Form onSubmit={handleSubmit}>
-            <Field 
-                type='text'
-                name='merchantname'
-                placeholder='merchantname'
-            />
-            {touched.merchantname && errors.merchantname && (
-                <p className="error">{errors.merchantname}</p>
-            )}
-            <Field 
-                type='date'
-                name='date'
-            />
-            {touched.date && errors.date && (
-                <p className="error">{errors.date}</p>
-            )}
-            <Field 
-                type='text'
-                name='amount'
-                placeholder='amount'
-            />
-            {touched.amount && errors.amount && (
-                <p className="error">{errors.amount}</p>
-            )}
-            <Field as='select' name='category'>
-                <option value=''>Choose One</option>
-                <option value='Home'>Home</option>
-                <option value='Office'>Office</option>
-                <option value='Car'>Car</option>
-                <option value='Children'>Children</option>
-                <option value='Gift'>Gift</option>
-                <option value='Insurance'>Insurance</option>
-                <option value='Electronics'>Electronics</option>
-                <option value='Food'>Food</option>
-                <option value='Entertainment'>Entertainment</option>
-            </Field>
-            {touched.category && errors.category && (
-                <p className="error">{errors.category}</p>
-            )}
-            <Field 
-                type='text'
-                name='imageurl'
-                placeholder='imageurl'
-                value={values.imageurl}
-            />
-            <Field
-                type="file"
-                name="file"
-                className="file-upload" 
-                data-cloudinary-field="image_id"
-                data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}"
-                onChange={uploadImage}
-            />
-            <button type='submit'>Add Receipt</button>
-        </Form>
+        <ContentStyled>
+            <h3>Add a new Receipt</h3>
+            <NewReceiptForm onSubmit={handleSubmit}>
+                <NewReceiptSpan>
+                    <label htmlFor="merchantname">Merchant Name:</label>
+                    <NewReceiptField 
+                        type='text'
+                        name='merchantname'
+                        placeholder='merchantname'
+                    />
+                    {touched.merchantname && errors.merchantname && (
+                        <p className="error">{errors.merchantname}</p>
+                    )}
+                </NewReceiptSpan>
+                <NewReceiptSpan>
+                    <label htmlFor="date">Date:</label>
+                    <NewReceiptField 
+                        type='date'
+                        name='date'
+                    />
+                    {touched.date && errors.date && (
+                        <p className="error">{errors.date}</p>
+                    )}
+                </NewReceiptSpan>
+                <NewReceiptSpan>
+                    <label htmlFor="amount">Amount of Purchase:</label>
+                    <NewReceiptField 
+                        type='text'
+                        name='amount'
+                        placeholder='amount'
+                    />
+                    {touched.amount && errors.amount && (
+                        <p className="error">{errors.amount}</p>
+                    )}
+                </NewReceiptSpan>
+                <NewReceiptSpan>
+                    <label htmlFor="category">Spending Category:</label>
+                    <NewReceiptField as='select' name='category' onChange={handleCategoryChange} >
+                        <option value=''>Choose One</option>
+                        <option value='Home'>Home</option>
+                        <option value='Office'>Office</option>
+                        <option value='Car'>Car</option>
+                        <option value='Children'>Children</option>
+                        <option value='Gift'>Gift</option>
+                        <option value='Insurance'>Insurance</option>
+                        <option value='Electronics'>Electronics</option>
+                        <option value='Food'>Food</option>
+                        <option value='Entertainment'>Entertainment</option>
+                    </NewReceiptField>
+                    {touched.category && errors.category && (
+                        <p className="error">{errors.category}</p>
+                    )}
+                </NewReceiptSpan>
+                <NewReceiptSpan>
+                    <label htmlFor="file">Receipt Picture:</label>
+                    <NewReceiptField
+                        type="file"
+                        name="file"
+                        className="file-upload" 
+                        data-cloudinary-field="image_id"
+                        data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}"
+                        onChange={uploadImage}
+                    />
+                </NewReceiptSpan>
+                <button type='submit'>Add Receipt</button>
+            </NewReceiptForm>
+        </ContentStyled>
     )
 }
 
